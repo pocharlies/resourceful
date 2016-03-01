@@ -25,11 +25,11 @@ require __DIR__ . "/../vendor/autoload.php";
 $app = new JDesrosiers\Resourceful\Resourceful();
 $app["debug"] = true;
 
-$app->register(new JDesrosiers\Resourceful\ResourcefulServiceProvider\ResourcefulServiceProvider(), array(
-    "resourceful.schemaStore" => new JDesrosiers\Resourceful\FileCache\FileCache(__DIR__ . "/../data"),
+$app->register(new JDesrosiers\Resourceful\Provider\ResourcefulServiceProvider\ResourcefulServiceProvider(), array(
+    "resourceful.schemaStore" => new JDesrosiers\Resourceful\Model\FileCache(__DIR__ . "/../data"),
 ));
 
-$app["data"] = new JDesrosiers\Resourceful\FileCache\FileCache(__DIR__ . "/../data");
+$app["data"] = new JDesrosiers\Resourceful\Model\FileCache(__DIR__ . "/../data");
 
 // Supporting Controllers
 $app->mount("/schema", new JDesrosiers\Resourceful\SchemaControllerProvider\SchemaControllerProvider());

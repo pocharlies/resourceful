@@ -1,6 +1,6 @@
 <?php
 
-namespace JDesrosiers\Resourceful\ResourcefulServiceProvider;
+namespace JDesrosiers\Resourceful\Providers\ResourcefulServiceProvider;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;

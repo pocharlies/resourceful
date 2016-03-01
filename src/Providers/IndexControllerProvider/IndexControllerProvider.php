@@ -1,10 +1,10 @@
 <?php
 
-namespace JDesrosiers\Resourceful\IndexControllerProvider;
+namespace JDesrosiers\Resourceful\Providers\IndexControllerProvider;
 
 use Doctrine\Common\Cache\Cache;
 use JDesrosiers\Resourceful\Controller\GetResourceController;
-use JDesrosiers\Resourceful\ResourcefulServiceProvider\AddSchema;
+use JDesrosiers\Resourceful\Providers\ResourcefulServiceProvider\AddSchema;
 use Silex\Application;
 use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -35,7 +35,7 @@ class IndexControllerProvider implements ControllerProviderInterface
             }
         });
 
-        $resource->get("/", new GetResourceController($this->service))->bind("index");
+        $resource->get("/", new GetResourceController($this->service, $schema))->bind("index");
 
         return $resource;
     }

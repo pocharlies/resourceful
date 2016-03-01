@@ -1,4 +1,10 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: daniel.ibanez
+ * Date: 29/02/16
+ * Time: 15:07
+ */
 
 namespace JDesrosiers\Resourceful\Controller;
 
@@ -6,12 +12,18 @@ use Silex\Application;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\ServiceUnavailableHttpException;
 
-class PutResourceController extends AbstractResourceController
+class PatchResourceController
 {
-    public function __invoke(Application $app, Request $request, $id)
+    /**
+     * @param Application $app
+     * @param Request $request
+     * @param $id
+     * @return mixed
+     * @throws ServiceUnavailableHttpException
+     */
+    function __invoke(Application $app, Request $request, $id)
     {
         $requestJson = $request->getContent() ?: "{}";
         $data = json_decode($requestJson);
@@ -24,17 +36,5 @@ class PutResourceController extends AbstractResourceController
         }
 
         return JsonResponse::create($data, $isCreated ? Response::HTTP_CREATED : Response::HTTP_OK);
-    }
-
-    private function validate(Application $app, $id, $data)
-    {
-        if ($id !== $data->id) {
-            throw new BadRequestHttpException("The `id` in the body must match the `id` in the URI");
-        }
-        $schema = $app["json-schema.schema-store"]->get($this->schema);
-        $validation = $app["json-schema.validator"]->validate($data, $schema);
-        if (!$validation->valid) {
-            throw new BadRequestHttpException(json_encode($validation->errors));
-        }
     }
 }

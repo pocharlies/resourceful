@@ -1,12 +1,12 @@
 <?php
 
-namespace JDesrosiers\Resourceful\FileCache;
+namespace JDesrosiers\Resourceful\Model;
 
 use Doctrine\Common\Cache\Cache;
 use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Filesystem;
 
-class FileCache implements Cache
+class FileCache implements ModelInterface
 {
     private $filesystem;
     private $location;
@@ -38,6 +38,11 @@ class FileCache implements Cache
         }
 
         return $data;
+    }
+
+    public function fetchAll()
+    {
+        return false;
     }
 
     public function contains($id)

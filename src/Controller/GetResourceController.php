@@ -8,16 +8,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\ServiceUnavailableHttpException;
 
-class GetResourceController
+class GetResourceController extends AbstractResourceController
 {
-    private $service;
-    private $contentType;
-
-    public function __construct(Cache $service, $contentType = "application/json")
-    {
-        $this->service = $service;
-        $this->contentType = $contentType;
-    }
 
     public function __invoke(Request $request)
     {

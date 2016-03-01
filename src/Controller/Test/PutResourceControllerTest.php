@@ -3,7 +3,7 @@
 namespace JDesrosiers\Resourceful\Controller\Test;
 
 use JDesrosiers\Resourceful\Controller\PutResourceController;
-use JDesrosiers\Resourceful\FileCache\FileCache;
+use JDesrosiers\Resourceful\Model\FileCache;
 use JDesrosiers\Silex\Provider\JsonSchemaServiceProvider;
 use PHPUnit_Framework_TestCase;
 use Silex\Application;
